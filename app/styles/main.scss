@@ -34,6 +34,7 @@ body {
 .temp-table {
   background-color: #F8F8F8;
   border-radius: 5px;
+  
   // opacity: .85;
   
   // padding:10px;
@@ -59,8 +60,10 @@ form {
   padding: 10px;
 }
 ul {
+    padding:0px;
   li {
     list-style: none;
+    
   }
 }
 .table-responsive{

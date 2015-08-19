@@ -1,7 +1,7 @@
 (function() {
 	angular.module('ClientTracker')
-		.service('ClientService',['$firebaseArray','$firebaseObject' ,function($firebaseArray, $firebaseObject){
-			
+		.service('ClientService',['$firebaseArray','$firebaseObject', 'AuthService' ,function($firebaseArray, $firebaseObject,AuthService){
+			var user = AuthService.userInfo();
 			var refClients = new Firebase("https://luminous-torch-5681.firebaseio.com/clients");
 			
 			this.getClients = function(){

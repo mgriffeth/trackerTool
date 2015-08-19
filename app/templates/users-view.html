@@ -1,4 +1,4 @@
-<form>
+<!-- <form>
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-search"></i></div>
@@ -7,10 +7,30 @@
 
       </div>      
     </div>
-  </form>
+  </form> -->
 
 
-<div class="table-responsive col-xs-12 ">
+<div class="table-responsive col-xs-12 temp-table">
+    <div class="col-md-9 temp-btn-group">
+        <a href="#/add-client">
+            <button type="button" class="btn btn-success" value="">
+                <span>add user </span>
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </a>
+        
+    </div>
+    
+        <form class="col-xs-6 col-md-3 pull-right">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+
+                <input type="text" class="form-control" placeholder="Search Users" ng-model="searchUsers">
+
+              </div>      
+            </div>
+        </form>    
 
 	<table class="table temp-table">
 		<thead>
@@ -79,7 +99,7 @@
 				<td style="vertical-align:middle">
 					<a href="#/single-user/{{user.$id}}">
 						<button class="btn btn-primary" type="button">
-							<span class="glyphicon glyphicon-plus"></span>
+							<span class="glyphicon glyphicon-user"></span>
 						</button>
 					</a>
 				</td>

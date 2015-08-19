@@ -9,7 +9,72 @@
   		<input class=" btn btn-danger" type="button" name="name" value="delete" ng-click="deleteClient()">
   	</div>
 	</div>
-	<div class="col-md-12 panel-body">
+	<div class="col-md-6 panel-body">
+		<div class="col-md-12">
+			<label for="">Company Name:</label>
+				<span class="client-info-text">{{client.company_name}}</span>
+				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.company_name">
+		</div>	
+		<div class="col-md-12">
+			<label for="">Industry:</label>
+				<span class="client-info-text">{{client.industry}}</span>
+				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.industry">
+		</div>
+		<div class="col-md-6">
+			<label for="">Contact Name:</label>
+				<span class="client-info-text">{{client.contact_name}}</span>
+				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.contact_name">
+			
+		</div>
+		<div class="col-md-12">
+			<label for="">Contact Position:</label>
+				<span class="client-info-text">{{client.contact_position}}</span>
+				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.contact_position">
+			
+		</div>
+		
+		<div class="col-md-12">
+			<label for="">Contact Email: </label>
+				<span class="client-info-text">{{client.contact_email}}</span>
+				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.contact_email">
+			
+		</div>
+		<div class="col-md-12">
+			<label for="">Contact Phone:</label>
+				<span class="client-info-text">{{client.contact_phone}}</span>
+				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.contact_phone">
+			
+		</div>
+	</div>
+	
+	<div class="col-md-6 panel-body">
+		<div class="col-md-12">
+			<label for="">Contact Signed Date:</label>
+				<span class="client-info-text">{{client.contract_signed_date | date}}</span>
+				<input class="edit-client-input hidden" type="date" name="name" value="" ng-model="client.contract_signed_date">
+			
+		</div>
+		<div class="col-md-12">
+			<label for="">Annual Contract Amount:</label>
+				<span class="client-info-text">{{client.billing_annual_contract | currency}}</span>
+				<input class="edit-client-input hidden" type="number" name="name" value="" ng-model="client.billing_annual_contract">
+			
+		</div>
+		<div class="col-md-12">
+			<label for="">SalesRep:</label>
+				<span class="client-info-text">{{client.sales_rep}}</span>
+				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.sales_rep">
+			
+		</div>
+		<div class="col-md-12">
+			<label for="">CSM:</label>
+				<span class="client-info-text">{{client.client_service_manager}}</span>
+				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.client_service_manager">
+			
+		</div>
+	</div>
+	
+	<!-- <div class="col-md-12 panel-body">
 
 		<div class="col-md-6">
 			<label for="">Company Name:</label>
@@ -81,7 +146,14 @@
 				</ul>
 			
 		</div>
-	</div>
+	</div> -->
+	
+	
+	
+	
+	
+	
+	
 	<!-- <div class="col-md-12">
 		<div class="col-md-6">
 			<label for="">Sales Representative:</label>

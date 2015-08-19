@@ -29,7 +29,7 @@
 			</label>	
 		</div>
 		<div class="">
-			<label for="">email:
+			<label for="">Email:
 				<span class="info-text" >{{user.email}}</span>
 				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="user.email">
 			</label>	
@@ -43,13 +43,39 @@
 		<div class="">
 			<label for="">Department:
 				<span class="info-text" >{{user.department}}</span>
-				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="user.department">
+				<!-- <input class="edit-user-input hidden" type="text" name="name" value="" ng-model="user.department"> -->
+				<div class="edit-user-input hidden ">
+					<label for="">Sales
+						<input type="radio" name="department" ng-model="user.department" value="sales">
+					</label>
+					<br>
+					<label for="">Client Services
+						<input type="radio" name="department" ng-model="user.department" value="client services">
+					</label>
+					<br>
+					<label for="">Corporate
+						<input type="radio" name="department" ng-model="user.department" value="corporate">
+					</label>
+				</div>
 			</label>	
 		</div>
 		<div class="">
 			<label for="">Permissions:
 				<span class="info-text" >{{user.permissions}}</span>
-				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="user.permissions">
+				<!-- <input class="edit-user-input hidden" type="text" name="name" value="" ng-model="user.permissions"> -->
+				<div class=" edit-user-input hidden">
+					<label for="">Admin
+						<input type="radio" name="permissions" ng-model="user.permissions" value="admin">
+					</label>
+					<br>
+					<label for="">Manager
+						<input type="radio" name="permissions" ng-model="user.permissions" value="manager">
+					</label>
+					<br>
+					<label for="">Basic
+						<input type="radio" name="permissions" ng-model="user.permissions" value="basic">
+					</label>
+				</div>
 			</label>	
 		</div>
 		

@@ -27,43 +27,23 @@
 </head>
 
 <body ng-app='ClientTracker'>
-  <nav class="navbar navbar-default" ng-controller="UserController">
+  <nav class="navbar navbar-default" ng-controller="UserController" ng-show=" currentUser">
     <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button> -->
-        <a class="navbar-brand" href="#/">Home <span class="glyphicon glyphicon-home"></span></a>
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <!-- <ul class="nav navbar-nav">
-        <li class="userNav"><a href="#/add-client">Add Client <span class="glyphicon glyphicon-plus"></span></a></li>
-        <li class="userNav"><a href="#/add-user">Add User <span class="glyphicon glyphicon-plus"></span></a></li>
-      </ul> -->
+        <ul class="nav navbar-nav">
+        <li class="userNav"><a href="#/">Home</a></li>
+        <li class="userNav"><a href="#/clients">Clients</a></li>
+        <li class="userNav"><a href="#/users">Users</a></li>
+      </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li class="" id="login"><a href="#/login">login</a></li>
-          <li class="userNav" id="logout"><a href="" ng-click="logout()">logout <span class="glyphicon glyphicon-off"></span></a></li>
-          <li class="userNav" class="dropdown">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#/clients">View Clients</a></li>
-                <li><a href="#/users">View Users</a></li>
-              <li><a href="#/users-deactivated">View Deactivated Users</a></li>
-              
-              <li role="separator" class="divider"></li>
-              <li class="userNav"><a href="#/add-client">Add Client <span class="glyphicon glyphicon-plus"></span></a></li>
-              <li role="separator" class="divider"></li>
-              <li class="userNav"><a href="#/add-user">Add User <span class="glyphicon glyphicon-plus"></span></a></li>
-
-              <!-- <li><a href="#">Separated link</a></li> -->
-            </ul>
+          <!-- <li class="" id="login"><a href="#/login">login</a></li> -->
+          <li class="userNav" id="logout"><a href="" ng-click="logOut()">logout <span class="glyphicon glyphicon-off"></span></a></li>
+          </li> 
+          <li ng-controller="UserController" class="userNav">
+              <a href="#/single-user/{{currentUser.id}}">
+                  logged in as: {{userInfo.username}} 
+              </a>
           </li>
-          <li ng-controller="UserController" class="userNav"><a href="#/single-user/{{currentUser.id}}">logged in as: {{userInfo.username}} <span class="glyphicon glyphicon-user"></span></a></li>
         </ul>
       </div>
       <!-- /.navbar-collapse -->

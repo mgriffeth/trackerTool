@@ -1,3 +1,6 @@
+<!-- <div ng-include="'nav-template.htm'"></div>
+<ng-include src="nav-template.html"></ng-include> -->
+
 <div class="col-md-8 temp-table">
 	<div class="col-md-9 temp-btn-group">
         <a href="#/add-client">
@@ -83,7 +86,7 @@
 		</thead>
 		<tbody class="">
 
-			<tr class="clickable-row" ng-repeat="client in clients | orderBy: sortType: sortReverse | filter:searchCurrentUser">
+			<tr class="clickable-row" ng-repeat="client in clients | orderBy: sortType: sortReverse | filter:searchClients">
 				<td style="vertical-align:middle">
 					<a href="#/single-client/{{client.$id}}">
 						<button class="btn btn-primary" type="button">
@@ -107,37 +110,34 @@
 
 </div>
 
-<div class="col-md-4" ng-controller="MessageController">
-	<h3>Messages</h3>
-	<ul class="">
-		<li class="" ng-repeat="x in currentUser.messages.new">
-			<!-- <span>{{x.subject}}</span>
-			<br>
-			<span>{{x.body}}</span> -->
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">{{x.subject}}</h3>
+<div class="col-md-4 " ng-controller="MessageController">
+	<div class="col-md-12 temp-table">
+		<h3>Messages</h3>
+		<p ng-if="! currentUser.messages.new">You dont seem to have any new messages...</p>
+		<ul class="">
+			<li class="" ng-repeat="x in currentUser.messages.new">
+				<div class="panel panel-default ">
+					<div class="panel-heading col-md-12 ">
+						<div class="col-md-9">
+							<h3 class="panel-title">{{x.subject}}</h3>	
+						</div>
+						<div class="col-md-3 ">
+							<a href="" class="pull-right">
+								<span class="glyphicon glyphicon-remove-sign " style="color:red;"></span>
+							</a>
+						</div>
+						
+					</div>
+					<div class="panel-body">
+						{{x.body}}
+					</div>
 				</div>
-				<div class="panel-body">
-					{{x.body}}
-				</div>
-			</div>
 
-		</li>
-	</ul>
-	<div>
-		<!-- <form id="message-form" class="">
-			<div class="form-group">
-				<div class="col-md-9">
-					<input type="text" placeholder="type title here" class=" form-control messageform" ng-model="message.title">	
-					<input type="text" placeholder="type message here" class=" form-control messageform" ng-model="message.body">	
-				</div>
-				<div class="col-md-3">
-					<input type="button" value="send" class="btn btn-info form-control " ng-click="addMessage(message)">		
-				</div>
-			</div>
-		</form> -->
+			</li>
+		</ul>	
 	</div>
+	
+	
 	<!-- <ul class="list-group" ng-repeat="msg in allMessages">
 		<li class="list-group-item">
 			<h4>{{msg.title}}</h4>
@@ -145,11 +145,6 @@
 		</li>
 		</li>
 	</ul> -->
-	<div class="col-md-12">
-		<h3>Active Users?</h3>
-		<h3>countdown?</h3>
-
-	</div>
-
+	
 
 </div>
