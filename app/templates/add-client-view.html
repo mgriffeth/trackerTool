@@ -1,0 +1,200 @@
+<div class="col-md-6 col-md-offset-3">
+	<h2>Add Client</h2>
+	
+		<div class="mock-form" id="partOne">
+			<h3>Client Information:</h3>
+			<div class="col-md-12 ">
+				<div class="col-md-6 mock-form-row">
+				  <label for="exampleInputEmail1">Company Name:</label>
+				  <input type="text" class="form-control" id="new1" placeholder="Company Name" ng-model="newClient.company_name" ng-required="true" >
+				</div>
+				<div class="col-md-6 mock-form-row">
+				  <label for="exampleInputUserName1">Industry:</label>
+				  <input type="text" class="form-control" id="new8" placeholder="Industry" ng-model="newClient.industry" >
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="col-md-12 mock-form-row">
+				  <label for="exampleInputUserName1">Corporate Location:</label>
+				  <input type="text" class="form-control" id="new7" placeholder="Location" ng-model="newClient.corporate_location" >
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="col-md-8">
+				  <label for="exampleInputUserName1"> Contact Name:</label>
+				  <input type="text" class="form-control" id="new3" placeholder="Contact Name" ng-model="newClient.contact_name" >
+				</div>
+				<div class="col-md-4">
+				  <label for="exampleInputUserName1"> Contact Position:</label>
+				  <input type="text" class="form-control" id="new4" placeholder="Contact Position" ng-model="newClient.contact_position" >
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="col-md-6 mock-form-row">
+				  <label for="exampleInputUserName1"> Contact Phone:</label>
+				  <input type="string" class="form-control" id="new5" placeholder="Contact Phone" ng-model="newClient.contact_phone" >
+				</div>
+				<div class="col-md-6 mock-form-row">
+				  <label for="exampleInputUserName1"> Contact Email:</label>
+				  <input type="email" class="form-control" id="new6" placeholder="Contact Email" ng-model="newClient.contact_email" >
+				</div>
+			</div>
+			<div class="col-md-12 mock-form-row">
+				<div class="col-md-6">
+				  <label for="exampleInputUserName1"> # of Locations:</label>
+				  <input type="number" class="form-control" id="new6" placeholder="# Locations" ng-model="newClient.number_locations" >
+				</div>
+				<div class="col-md-6">
+				  <label for="exampleInputUserName1"> # of Employees:</label>
+				  <input type="number" class="form-control" id="new6" placeholder="# Employees" ng-model="newClient.number_employees" >
+				</div>
+			</div>
+			<div class="col-md-12 mock-form-row">
+				<div class="col-md-12 ">
+    			  <label for="exampleInputUserName1">Client Notes:</label>
+    			  <input type="textarea" class="form-control" id="new5" placeholder="Enter Text" ng-model="newClient.client_notes" >
+    			</div>
+			</div>
+			<div class="col-md-6">
+				<label for="">Client Service Manager:</label>
+					<!-- <span class="">{{client.client_service_manager}}</span> -->
+					<ul class="list">
+						<li class="" ng-repeat="x in users | filter:{department: 'client services'}">
+							<label for="">{{x.first_name}} {{x.last_name}} ( {{x.username}} )</label>
+							<input class="" type="radio" name="client-service-manager" value="{{x.username}}" ng-model="newClient.client_service_manager" >
+							
+							<!-- <input class="" type="text" value="{{x.$id}}"> -->
+							
+						</li>
+					</ul>
+				
+			</div>
+		
+			<input class="btn btn-primary btn-block" type="button" name="name" value="Next" ng-click="toPartTwo()">
+		</div>
+		
+		
+		<div class="mock-form hidden" id="partTwo">
+			<h3>Contract Information:</h3>
+			<div class="col-md-12 mock-form-row">
+				<div class="col-md-6 ">
+					<label for="">Upload Contract:</label>
+					<input type="file" class="form-control" id="" placeholder="$" ng-model="newClient.contract_file" ng-required="true">
+				</div>
+
+				<div class="col-md-6 ">
+					<label for="">Contract Signed:</label>
+					<input type="date" class="form-control" id="" placeholder="$" ng-model="newClient.contract_signed_date" ng-required="true">
+				</div>
+				<div class="col-md-6 ">
+					<label for="">Annual Contract $:</label>
+					<input type="number" class="form-control" id="" placeholder="$" ng-model="newClient.billing_annual_contract" >
+				</div>
+			</div>
+			<div class="col-md-12 mock-form-row">
+				<div class="col-md-6 ">
+					<label for="">Implementation Fees:</label>
+					<input type="number" class="form-control" id="" placeholder="$" ng-model="newClient.billing_implementation_fee" >
+				</div>
+				<div class="col-md-6 ">
+					<label for="">Monthly Invoice $:</label>
+					<input type="number" class="form-control" id="" placeholder="$" ng-model="newClient.billing_monthly_invoice" >
+				</div>
+			</div>
+			<h3>Billing Information:</h3>
+			<div class="col-md-12 mock-form-row">
+				<div class="col-md-6">
+					<label for="">Name:</label>
+					<input type="text" class="form-control" id="" placeholder="Billing Name" ng-model="newClient.billing_name" >
+				</div>
+				<div class="col-md-6">
+					<label for="">Phone:</label>
+					<input type="" class="form-control" id="" placeholder="Billing Phone" ng-model="newClient.billing_phone" >
+				</div>
+			</div>
+			<div class="col-md-12 mock-form-row">
+				<div class="col-md-12 ">
+					<label for="">Billing Address:</label>
+					<br>
+					<label for="">same as above</label>
+					<input type="checkbox" name="name" value="">
+					<input type="text" class="form-control" id="" placeholder="Billing Address" ng-model="newClient.billing_address" >
+				</div>
+			</div>
+			<div class="col-md-12 mock-form-row">
+				<div class="col-md-12 ">
+					<label for="">Billing Email:</label>
+					<input type="email" class="form-control" id="" placeholder="Billing Name" ng-model="newClient.billing_email" >
+				</div>
+			</div>
+			
+			<div class="col-md-12 mock-form-row">
+				<div class="col-md-12 ">
+					<label for="">Billing Notes:</label>
+					<input type="textarea" class="form-control" id="" placeholder="Enter Text" ng-model="newClient.billing_notes" >
+				</div>
+			</div>
+			 
+			 
+				 <input type="button"  class="btn btn-primary btn-block" ng-click="toPartOne()" name="name" value="Back">
+ 				
+ 				<input type="button"  class="btn btn-primary btn-block" ng-click="addNewClient(newClient)" name="name" value="Add Client">
+			
+			</div>
+			
+			
+		</div>
+	
+	<!-- <form class="" action="index.html" method="post">
+		<div class="col-md-6">
+			<div class="form-group">
+			  <label for="exampleInputEmail1">1) Company Name:</label>
+			  <input type="text" class="form-control" id="new1" placeholder="Company Name" ng-model="newClient.company_name" >
+			</div>
+			<div class="form-group">
+			  <label for="exampleInputEmail1">2) Company Phone:</label>
+			  <input type="text" class="form-control" id="new2" placeholder="Company Phone #" ng-model="newClient.company_phone" >
+			</div>
+			<div class="form-group">
+			  <label for="exampleInputUserName1">3) Contact Name:</label>
+			  <input type="text" class="form-control" id="new3" placeholder="Client Name" ng-model="newClient.contact_name" >
+			</div>
+			<div class="form-group">
+			  <label for="exampleInputUserName1">4) Contact Position:</label>
+			  <input type="text" class="form-control" id="new4" placeholder="Client Position" ng-model="newClient.contact_position" >
+			</div>
+			<div class="form-group">
+			  <label for="exampleInputUserName1">5) Contact Phone:</label>
+			  <input type="text" class="form-control" id="new5" placeholder="Client Position" ng-model="newClient.contact_phone" >
+			</div>
+			
+		</div>
+		
+		
+		<div class="col-md-6">
+			<div class="form-group">
+			  <label for="exampleInputUserName1">6) Contact Email:</label>
+			  <input type="email" class="form-control" id="new6" placeholder="Contact Email" ng-model="newClient.contact_email" >
+			</div>
+			<div class="form-group">
+			  <label for="exampleInputUserName1">7) Corporate Location:</label>
+			  <input type="text" class="form-control" id="new7" placeholder="Location" ng-model="newClient.corporate_location" >
+			</div>
+			<div class="form-group">
+			  <label for="exampleInputUserName1">8) Industry:</label>
+			  <input type="text" class="form-control" id="new8" placeholder="Industry" ng-model="newClient.industry" >
+			</div>
+			<div class="form-group">
+			  <label for="exampleInputUserName1">9) Property Name:</label>
+			  <input type="text" class="form-control" id="new9" placeholder="name" ng-model="newClient.property_name" >
+			</div>
+			<div class="form-group">
+			  <label for="exampleInputUserName1">10) Property Location:</label>
+			  <input type="text" class="form-control" id="new10" placeholder="address" ng-model="newClient.property_location" >
+			</div>
+		</div>
+		
+	</form>
+	<button type="" class="btn btn-primary btn-block" ng-click="addNewClient(newClient)">Add Client</button> -->
+</div>
+

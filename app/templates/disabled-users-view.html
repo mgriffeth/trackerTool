@@ -1,0 +1,34 @@
+<!-- <div class="">
+	<h1>Userlist</h1>
+</div> -->
+
+<div class="table-responsive col-xs-8 col-xs-offset-2">
+	
+	<table class="table temp-table">
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th>Name</th>
+				<th>Username</th>
+				<th>Email</th>
+				<th>Department</th>
+				<th>Permissions</th>
+				<th>Active</th>
+				<th>Accounts</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody ng-repeat="user in usersDisabled">
+			<tr>
+				<td style="vertical-align:middle"><a href="#/single-disabled-user/{{user.$id}}"><button class ="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus"></span></button></a></td>
+				<td style="vertical-align:middle">{{user.last_name}}, {{user.first_name}}</td>
+				<td style="vertical-align:middle">{{user.username}}</td>
+				<td style="vertical-align:middle">{{user.email}}</td>
+				<td style="vertical-align:middle">{{user.department}}</td>
+				<td style="vertical-align:middle">{{user.permissions}}</td>
+				<td style="vertical-align:middle"></td>
+				<td style="vertical-align:middle"></td>
+				<td style="vertical-align:middle"></td>
+			</tr>
+		</tbody>
+	</table>

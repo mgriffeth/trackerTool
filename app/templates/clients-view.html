@@ -1,0 +1,104 @@
+
+<div class="table-responsive col-xs-12 temp-table clearfix">
+    <div class="col-md-9 temp-btn-group">
+        <a href="#/add-client">
+            <button type="button" class="btn btn-success" value="">
+                <span>add client </span>
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </a>
+        
+    </div>
+    
+        <form class="col-xs-6 col-md-3 pull-right">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+
+                <input type="text" class="form-control" placeholder="Search Clients" ng-model="searchClients">
+
+              </div>      
+            </div>
+        </form>    
+    
+
+	<table class="table temp-table table-hover">
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th>
+					<a href="" ng-click="sortType = 'company_name'; sortReverse = !sortReverse ">
+						Company	
+						<span ng-show="sortType == 'company_name' && !sortReverse"> </span>
+						<span ng-show="sortType == 'company_name'&& sortReverse"> </span>
+					</a>
+				</th>
+				<th>
+					<a href="" ng-click="sortType = 'industry'; sortReverse = !sortReverse ">
+						Industry</th>
+						<span ng-show="sortType == 'industry' && !sortReverse"> </span>
+						<span ng-show="sortType == 'industry'&& sortReverse"> </span>
+					</a>
+				<th>
+					<a href="" ng-click="sortType = 'contact_name'; sortReverse = !sortReverse ">
+						Contact Name
+						<span ng-show="sortType == 'contact_name' && !sortReverse"> </span>
+						<span ng-show="sortType == 'contact_name'&& sortReverse"> </span>
+					</a>
+				</th>
+				<th>
+					<a href="" ng-click="sortType = 'contact_email'; sortReverse = !sortReverse ">
+						Contact Email
+						<span ng-show="sortType == 'contact_email' && !sortReverse"> </span>
+						<span ng-show="sortType == 'contact_email'&& sortReverse"> </span>
+					</a>
+				</th>
+				<th>
+					<a href="" ng-click="sortType = 'contact_phone'; sortReverse = !sortReverse ">
+						Contact Phone
+						<span ng-show="sortType == 'contact_phone' && !sortReverse"> </span>
+						<span ng-show="sortType == 'contact_phone'&& sortReverse"> </span>
+					</a>
+				</th>
+				<th>
+					<a href="" ng-click="sortType = 'sales_rep'; sortReverse = !sortReverse ">
+						Sales Rep
+						<span ng-show="sortType == 'sales_rep' && !sortReverse"> </span>
+						<span ng-show="sortType == 'sales_rep'&& sortReverse"> </span>
+					</a>
+				</th>
+				<th>
+					<a href="" ng-click="sortType = 'client_service_manager'; sortReverse = !sortReverse ">
+						Client Service Manager
+						<span ng-show="sortType == 'client_service_manager' && !sortReverse"> </span>
+						<span ng-show="sortType == 'client_service_manager'&& sortReverse"> </span>
+					</a>
+				</th>
+				<th>
+					<a href="" ng-click="sortType = 'contract_signed_date'; sortReverse = !sortReverse ">
+						Contract Signed
+						<span ng-show="sortType == 'contract_signed_date' && !sortReverse"> </span>
+						<span ng-show="sortType == 'contract_signed_date'&& sortReverse"> </span>
+					</a>
+				</th>
+
+			</tr>
+		</thead>
+		<tbody class="" >
+
+			<tr class="clickable-row" ng-repeat="client in clients | orderBy: sortType: sortReverse | filter:searchClients">
+				<td style="vertical-align:middle"><a href="#/single-client/{{client.$id}}"><button class ="btn btn-primary" type="button"><span class="glyphicon glyphicon-folder-open"></span></button></a></td>
+				<!-- <td>{{client.objectId}}</td> -->
+				<td style="vertical-align:middle">{{client.company_name}}</td>
+				<td style="vertical-align:middle">{{client.industry}}</td>
+				<td style="vertical-align:middle">{{client.contact_name}}</td>
+				<td style="vertical-align:middle">{{client.contact_email}}</td>
+				<td style="vertical-align:middle">{{client.contact_phone}}</td>
+				<td style="vertical-align:middle">{{client.sales_rep}}</td>
+				<td style="vertical-align:middle">{{client.client_service_manager}}</td>
+				<td style="vertical-align:middle">{{client.contract_signed_date | date}}</td>
+			</tr>
+		</tbody>
+
+	</table>
+</div>

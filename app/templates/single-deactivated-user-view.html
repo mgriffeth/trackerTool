@@ -1,0 +1,59 @@
+<div class="col-md-8 col-md-offset-2 mock-form panel panel-default">
+	<div class="page-header clearfix">
+	  <h1>{{userDisabled.first_name}} {{userDisabled.last_name}} <small>username: {{userDisabled.username}}  </small></h1>
+	  <div class="btn-group pull-right">
+  		<input class="btn btn-warning" type="button" name="name" value="edit" ng-click="readyEdit()">
+  		<input class="btn btn-warning" type="button" name="name" value="close edit" ng-click="closeEdit()">
+  		<input class="btn btn-warning" type="button" name="name" value="submit changes" ng-click="submitEdit(user)">
+  		<input class="btn btn-info" type="button" name="name" value="acitivate" ng-click="activateUser(user)">
+  	</div>
+	<input type="button" class="btn btn-danger" ng-click="destroyUser(userDisabled.id)" value="destroy">
+	</div>
+	<div class="col-md-12 panel-body">
+		<div class="">
+			<label for="name">First Name:
+				<span class="info-text" >{{userDisabled.first_name}}</span>
+				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="userDisabled.first_name">
+			</label>	
+		</div>
+		<div class="">
+			<label for="">Last Name:
+				<span class="info-text" >{{userDisabled.last_name}}</span>
+				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="userDisabled.last_name">
+			</label>	
+		</div>
+		<div class="">
+			<label for="">Username:
+				<span class="info-text" >{{userDisabled.username}}</span>
+				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="userDisabled.username">
+			</label>	
+		</div>
+		<div class="">
+			<label for="">email:
+				<span class="info-text" >{{userDisabled.email}}</span>
+				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="userDisabled.email">
+			</label>	
+		</div>
+		<div class="">
+			<label for="">Phone:
+				<span class="info-text" >{{userDisabled.phone}}</span>
+				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="userDisabled.phone">
+			</label>	
+		</div>
+		<div class="">
+			<label for="">Department:
+				<span class="info-text" >{{userDisabled.department}}</span>
+				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="userDisabled.department">
+			</label>	
+		</div>
+		<div class="">
+			<label for="">Permissions:
+				<span class="info-text" >{{userDisabled.permissions}}</span>
+				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="userDisabled.permissions">
+			</label>	
+		</div>
+		
+	</div>
+	
+	
+</div>

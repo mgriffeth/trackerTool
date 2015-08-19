@@ -1,0 +1,59 @@
+<div class="col-md-8 col-md-offset-2 mock-form panel panel-default">
+	<div class="page-header clearfix">
+	  <h1>{{user.first_name}} {{user.last_name}} <small>username: {{user.username}}  </small></h1>
+	  <div class="btn-group pull-right">
+  		<input class="btn btn-warning" type="button" name="name" value="edit" ng-click="readyEdit()">
+  		<input class="btn btn-warning" type="button" name="name" value="close edit" ng-click="closeEdit()">
+  		<input class="btn btn-warning" type="button" name="name" value="submit changes" ng-click="submitEdit(user)">
+  		<input class="btn btn-warning" type="button" name="name" value="deactivate" ng-click="deactivateUser(user)">
+  	</div>
+	<input type="button" class="btn btn-danger" ng-click="destroyUser(user.$id,user.email, user.password)" value="destroy">
+	</div>
+	<div class="col-md-12 panel-body">
+		<div class="">
+			<label for="name">First Name:
+				<span class="info-text" >{{user.first_name}}</span>
+				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="user.first_name">
+			</label>	
+		</div>
+		<div class="">
+			<label for="">Last Name:
+				<span class="info-text" >{{user.last_name}}</span>
+				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="user.last_name">
+			</label>	
+		</div>
+		<div class="">
+			<label for="">Username:
+				<span class="info-text" >{{user.username}}</span>
+				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="user.username">
+			</label>	
+		</div>
+		<div class="">
+			<label for="">email:
+				<span class="info-text" >{{user.email}}</span>
+				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="user.email">
+			</label>	
+		</div>
+		<div class="">
+			<label for="">Phone:
+				<span class="info-text" >{{user.phone}}</span>
+				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="user.phone">
+			</label>	
+		</div>
+		<div class="">
+			<label for="">Department:
+				<span class="info-text" >{{user.department}}</span>
+				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="user.department">
+			</label>	
+		</div>
+		<div class="">
+			<label for="">Permissions:
+				<span class="info-text" >{{user.permissions}}</span>
+				<input class="edit-user-input hidden" type="text" name="name" value="" ng-model="user.permissions">
+			</label>	
+		</div>
+		
+	</div>
+	
+	
+</div>

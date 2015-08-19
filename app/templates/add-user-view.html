@@ -1,0 +1,78 @@
+<div class="col-xs-offset-3 col-xs-6">
+	<!-- <h1>Create New User</h1> -->
+	<div id="newUserForm" class="mock-form">
+		<div class="col-md-12 form-group">
+			<div class="col-md-6">
+				<label for="">First Name:</label>
+				<input type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name" ng-model="user.first_name" ng-required="true">
+			</div>
+			<div class="col-md-6">
+				<label for="">Last Name:</label>
+				<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Last Name" ng-model="user.last_name" ng-required="true">
+			</div>
+
+		</div>
+		<div class="col-md-12 form-group">
+			<div class="col-md-6">
+				<label for="exampleInputEmail1">Phone:</label>
+				<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Phone" ng-model="user.phone" ng-required="true">
+			</div>
+			<div class="col-md-6">
+				<label for="exampleInputEmail1">Email Address:</label>
+				<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="user.email" ng-required="true">
+			</div>
+		</div>
+
+		<div class="col-md-12 form-group">
+			<div class="col-md-12">
+				<label for="exampleInputUserName1">Username:</label>
+				<input type="text" class="form-control" id="exampleInputUserName1" placeholder="Username" ng-model="user.username" ng-required="true">
+			</div>
+		</div>
+		<div class="col-md-12 form-group">
+			<div class="col-md-6">
+				<label for="exampleInputPassword1">Password:</label>
+				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+			</div>
+			<div class="col-md-6">
+				<label for="exampleInputPassword2">Repeat Password:</label>
+				<input type="password" class="form-control" id="exampleInputPassword2" placeholder="Repeat Password" ng-model="user.password" ng-required="true">
+			</div>
+		</div>
+		<div class="col-md-6 form-group">
+			<label for="">Department:</label>
+			<div class="col-md-12 ">
+				<label for="">Sales
+					<input type="radio" name="department" ng-model="user.department" value="sales">
+				</label>
+				<br>
+				<label for="">Client Services
+					<input type="radio" name="department" ng-model="user.department" value="client services">
+				</label>
+				<br>
+				<label for="">Corporate
+					<input type="radio" name="department" ng-model="user.department" value="corporate">
+				</label>
+			</div>
+		</div>
+		<div class="col-md-6 form-group">
+			<label for="">User Permissions:</label>
+			<div class="col-md-12 ">
+				<label for="">Admin
+					<input type="radio" name="permissions" ng-model="user.permissions" value="admin">
+				</label>
+				<br>
+				<label for="">Manager
+					<input type="radio" name="permissions" ng-model="user.permissions" value="manager">
+				</label>
+				<br>
+				<label for="">Basic
+					<input type="radio" name="permissions" ng-model="user.permissions" value="basic">
+				</label>
+			</div>
+		</div>
+
+		<input class="btn btn-block btn-primary" type="button" name="name" value="Create User" ng-click="registerUser(user)">
+		<!-- <button type="submit" class="btn btn-primary btn-block">Create User</button> -->
+	</div>
+</div>

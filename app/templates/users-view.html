@@ -1,0 +1,96 @@
+<form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+        <input type="text" class="form-control" placeholder="Search Clients" ng-model="searchUsers">
+
+      </div>      
+    </div>
+  </form>
+
+
+<div class="table-responsive col-xs-12 ">
+
+	<table class="table temp-table">
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th>
+					<a href="" ng-click="sortType = 'last_name'; sortReverse = !sortReverse">
+						Name
+						<span ng-show="sortType == 'last_name' && !sortReverse"> </span>
+						<span ng-show="sortType == 'last_name'&& sortReverse"> </span>
+					</a>
+				</th>
+				<th>
+					<a href="" ng-click="sortType = 'username'; sortReverse = !sortReverse">
+						Username
+						<span ng-show="sortType == 'username' && !sortReverse"> </span>
+						<span ng-show="sortType == 'username'&& sortReverse"> </span>
+					</a>
+				</th>
+				<th>
+					<a href="" ng-click="sortType = 'email'; sortReverse = !sortReverse">
+						Email
+						<span ng-show="sortType == 'email' && !sortReverse"> </span>
+						<span ng-show="sortType == 'email'&& sortReverse"> </span>
+					</a>
+				</th>
+				<th>
+					<a href="" ng-click="sortType = 'department'; sortReverse = !sortReverse">
+						Department
+						<span ng-show="sortType == 'department' && !sortReverse"> </span>
+						<span ng-show="sortType == 'department'&& sortReverse"> </span>
+					</a>
+				</th>
+				<th>
+					<a href="" ng-click="sortType = 'permissions'; sortReverse = !sortReverse">
+						Permissions
+						<span ng-show="sortType == 'permissions' && !sortReverse"> </span>
+						<span ng-show="sortType == 'permissions'&& sortReverse"> </span>
+					</a>
+				</th>
+				<th>
+					<a href="" ng-click="sortType = 'active'; sortReverse = !sortReverse">
+						Active
+						<span ng-show="sortType == 'active' && !sortReverse"> </span>
+						<span ng-show="sortType == 'active'&& sortReverse"> </span>
+					</a>
+				</th>
+				<th>
+					<a href="" ng-click="sortType = 'accounts'; sortReverse = !sortReverse">
+						Accounts
+						<span ng-show="sortType == 'accounts' && !sortReverse"> </span>
+						<span ng-show="sortType == 'accounts'&& sortReverse"> </span>
+					</a>
+				</th>
+				<th>
+					<a href="" ng-click="sortType = 'total'; sortReverse = !sortReverse">
+						Total
+						<span ng-show="sortType == 'total' && !sortReverse"> </span>
+						<span ng-show="sortType == 'total'&& sortReverse"> </span>
+					</a>
+				</th>
+			</tr>
+		</thead>
+		<tbody >
+			<tr ng-repeat="user in users | orderBy: sortType: sortReverse | filter:searchUsers">
+				<td style="vertical-align:middle">
+					<a href="#/single-user/{{user.$id}}">
+						<button class="btn btn-primary" type="button">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+					</a>
+				</td>
+				<td style="vertical-align:middle">{{user.last_name}}, {{user.first_name}}</td>
+				<td style="vertical-align:middle">{{user.username}}</td>
+				<td style="vertical-align:middle">{{user.email}}</td>
+				<td style="vertical-align:middle">{{user.department}}</td>
+				<td style="vertical-align:middle">{{user.permissions}}</td>
+				<td style="vertical-align:middle"></td>
+				<td style="vertical-align:middle"></td>
+				<td style="vertical-align:middle"></td>
+			</tr>
+		</tbody>
+	</table>
