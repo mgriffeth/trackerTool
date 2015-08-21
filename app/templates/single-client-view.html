@@ -1,79 +1,149 @@
-
 <div class="col-md-8 col-md-offset-2  panel panel-default">
 	<div class="page-header clearfix">
-	  <h1>Client Information <small>for {{client.company_name}}</small></h1>
-	  <div class="btn-group pull-right">
-  		<input id="editOpen" class=" btn btn-primary" type="button" name="name" value="edit" ng-click="readyEdit()">
-  		<input id="editClose" class="hidden btn btn-primary" type="button" name="name" value="close edit" ng-click="closeEdit()">
-  		<input class=" btn btn-warning" type="button" name="name" value="submit changes" ng-click="updateClient(client)">
-  		<input class=" btn btn-danger" type="button" name="name" value="delete" ng-click="deleteClient()">
-  	</div>
+		<h1>Client Information
+			<small>for {{client.company_name}}</small>
+		</h1>
+		<div class=" pull-right">
+			<input id="editOpen" class=" btn btn-primary" type="button" name="name" value="edit" ng-click="readyEdit()">
+			<input id="editClose" class="hidden btn btn-primary" type="button" name="name" value="close edit" ng-click="closeEdit()">
+			<input class=" btn btn-warning" type="button" name="name" value="submit changes" ng-click="updateClient(client)">
+			<input ng-show="client.status !== 'deactivated'" class=" btn btn-danger" type="button" name="name" value="deactivate" ng-click="deactivateClient()">
+			<input ng-show="client.status == 'deactivated'" class=" btn btn-success" type="button" name="name" value="activate" ng-click="activateClient()">
+		</div>
+		<input class=" btn btn-danger" type="button" name="name" value="delete" ng-click="deleteClient()">
 	</div>
 	<div class="col-md-6 panel-body">
 		<div class="col-md-12">
 			<label for="">Company Name:</label>
-				<span class="client-info-text">{{client.company_name}}</span>
-				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.company_name">
-		</div>	
+			<span class="client-info-text">{{client.company_name}}</span>
+			<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.company_name">
+		</div>
 		<div class="col-md-12">
 			<label for="">Industry:</label>
-				<span class="client-info-text">{{client.industry}}</span>
-				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.industry">
+			<span class="client-info-text">{{client.industry}}</span>
+			
+			<div class="dropdown col-md-offset-3 edit-client-input hidden">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				  Industry
+				  <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				  <li>
+					  <!-- <a href="">{{user.username}}</a> -->
+					  <label for="">Hospitality</label>
+					  <input type="radio" ng-model="client.industry" value="Hospitality">
+				  </li>
+				  <li>
+					  <!-- <a href="">{{user.username}}</a> -->
+					  <label for="">Automotive</label>
+					  <input type="radio" ng-model="client.industry" value="Automotive">
+				  </li><li>
+					  <!-- <a href="">{{user.username}}</a> -->
+					  <label for="">Manufaturing</label>
+					  <input type="radio" ng-model="client.industry" value="Manufaturing">
+				  </li><li>
+					  <!-- <a href="">{{user.username}}</a> -->
+					  <label for="">Transportation</label>
+					  <input type="radio" ng-model="client.industry" value="Transportation">
+				  </li><li>
+					  <!-- <a href="">{{user.username}}</a> -->
+					  <label for="">Medical</label>
+					  <input type="radio" ng-model="client.industry" value="Medical">
+				  </li>
+				  
+			  </ul>
+		  </div>
 		</div>
 		<div class="col-md-6">
 			<label for="">Contact Name:</label>
-				<span class="client-info-text">{{client.contact_name}}</span>
-				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.contact_name">
-			
+			<span class="client-info-text">{{client.contact_name}}</span>
+			<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.contact_name">
+
 		</div>
 		<div class="col-md-12">
 			<label for="">Contact Position:</label>
-				<span class="client-info-text">{{client.contact_position}}</span>
-				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.contact_position">
-			
+			<span class="client-info-text">{{client.contact_position}}</span>
+			<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.contact_position">
+
 		</div>
-		
+
 		<div class="col-md-12">
 			<label for="">Contact Email: </label>
-				<span class="client-info-text">{{client.contact_email}}</span>
-				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.contact_email">
-			
+			<span class="client-info-text">{{client.contact_email}}</span>
+			<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.contact_email">
+
 		</div>
 		<div class="col-md-12">
 			<label for="">Contact Phone:</label>
-				<span class="client-info-text">{{client.contact_phone}}</span>
-				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.contact_phone">
-			
+			<span class="client-info-text">{{client.contact_phone}}</span>
+			<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.contact_phone">
+
 		</div>
 	</div>
-	
+
 	<div class="col-md-6 panel-body">
 		<div class="col-md-12">
 			<label for="">Contact Signed Date:</label>
-				<span class="client-info-text">{{client.contract_signed_date | date}}</span>
-				<input class="edit-client-input hidden" type="date" name="name" value="" ng-model="client.contract_signed_date">
-			
+			<span class="client-info-text">{{client.contract_signed_date | date}}</span>
+			<input class="edit-client-input hidden" type="date" name="name" value="" ng-model="client.contract_signed_date">
+
 		</div>
 		<div class="col-md-12">
 			<label for="">Annual Contract Amount:</label>
-				<span class="client-info-text">{{client.billing_annual_contract | currency}}</span>
-				<input class="edit-client-input hidden" type="number" name="name" value="" ng-model="client.billing_annual_contract">
-			
+			<span class="client-info-text">{{client.billing_annual_contract | currency}}</span>
+			<input class="edit-client-input hidden" type="number" name="name" value="" ng-model="client.billing_annual_contract">
+
 		</div>
 		<div class="col-md-12">
 			<label for="">SalesRep:</label>
-				<span class="client-info-text">{{client.sales_rep}}</span>
-				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.sales_rep">
+			<span class="">{{client.sales_rep}}</span>
+			<!-- <input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.sales_rep"> -->
+			<div class="dropdown edit-client-input hidden">
+				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					Dropdown
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					<li ng-repeat="user in users | filter:{department: 'sales'}">
+						<!-- <a href="">{{user.username}}</a> -->
+						<label for="">{{user.username}}</label>
+						<input type="radio" ng-model="client.sales_rep" value="{{user.username}}">
+					</li>
+					<!-- <li></li>
+					<li></li>
+					<li></li> -->
+				</ul>
+			</div>
 			
+			
+
 		</div>
 		<div class="col-md-12">
 			<label for="">CSM:</label>
-				<span class="client-info-text">{{client.client_service_manager}}</span>
-				<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.client_service_manager">
-			
+			<span class="">{{client.client_service_manager}}</span>
+			<!-- <input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.client_service_manager"> -->
+
+			<div class="dropdown edit-client-input hidden col-md-offset-3">
+				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					Dropdown
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					<li ng-repeat="user in users | filter:{department: 'client services'}">
+						<!-- <a href="">{{user.username}}</a> -->
+						<label for="">{{user.username}}</label>
+						<input type="radio" ng-model="client.client_service_manager" value="{{user.username}}">
+					</li>
+					<!-- <li></li>
+					<li></li>
+					<li></li> -->
+				</ul>
+			</div>
+
+
 		</div>
 	</div>
-	
+
 	<!-- <div class="col-md-12 panel-body">
 
 		<div class="col-md-6">
@@ -147,13 +217,13 @@
 			
 		</div>
 	</div> -->
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 	<!-- <div class="col-md-12">
 		<div class="col-md-6">
 			<label for="">Sales Representative:</label>
@@ -179,5 +249,5 @@
 		</div>
 	</div> -->
 
-	
+
 </div>

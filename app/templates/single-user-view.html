@@ -78,7 +78,22 @@
 				</div>
 			</label>	
 		</div>
-		
+		<div class="">
+			<label for="">Active Accounts:
+				<span class="info-text" >{{user.accounts_active}}</span>
+				<input class="edit-user-input hidden" type="number" name="name" value="" ng-model="user.accounts_active">
+			</label>	
+		</div><div class="">
+			<label for="">Inactive Accounts:
+				<span class="info-text" >{{user.accounts_inactive}}</span>
+				<input class="edit-user-input hidden" type="number" name="name" value="" ng-model="user.accounts_inactive">
+			</label>	
+		</div><div class="">
+			<label for="">Accounts To Date:
+				<span class="" >{{user.accounts_active + user.accounts_inactive}}</span>
+				<!-- <input class="edit-user-input hidden" type="number" name="name" value=""> -->
+			</label>	
+		</div>
 	</div>
 	
 	

@@ -86,14 +86,17 @@
 		</thead>
 		<tbody class="">
 
-			<tr class="clickable-row" ng-repeat="client in clients | orderBy: sortType: sortReverse | filter:searchClients">
+			<tr ng-show="client.sales_rep == currentUser.username || client.client_service_manager == currentUser.userame" class="clickable-row" ng-repeat="client in clients | orderBy: sortType: sortReverse | filter:searchClients">
 				<td style="vertical-align:middle">
-					<a href="#/single-client/{{client.$id}}">
-						<button class="btn btn-primary" type="button">
-							<span class="glyphicon glyphicon-folder-open"></span>
-						</button>
-					</a>
-				</td>
+		          <a href="#/single-client/{{client.$id}}">
+		            <button ng-show="client.status !== 'deactivated'" class="btn btn-primary" type="button">
+		              <span class="glyphicon glyphicon-folder-open"></span>
+		            </button>
+		            <button ng-show="client.status == 'deactivated'"class="btn btn-danger" type="button">
+		              <span class="glyphicon glyphicon-folder-open"></span>
+		            </button>
+		          </a>
+		        </td>
 				<!-- <td>{{client.objectId}}</td> -->
 				<td style="vertical-align:middle">{{client.company_name}}</td>
 				<td style="vertical-align:middle">{{client.industry}}</td>
@@ -115,16 +118,25 @@
 		<h3>Messages</h3>
 		<p ng-if="! currentUser.messages.new">You dont seem to have any new messages...</p>
 		<ul class="">
-			<li class="" ng-repeat="x in currentUser.messages.new">
+			<li class="" ng-repeat="x in messages | filter: {status:'unread'} ">
 				<div class="panel panel-default ">
 					<div class="panel-heading col-md-12 ">
 						<div class="col-md-9">
 							<h3 class="panel-title">{{x.subject}}</h3>	
 						</div>
 						<div class="col-md-3 ">
-							<a href="" class="pull-right">
-								<span class="glyphicon glyphicon-remove-sign " style="color:red;"></span>
-							</a>
+							
+							<div class="col-md-6">
+								<a href="" class="" ng-click="markAsRead(x.$id)">
+									<span class="glyphicon glyphicon-ok-sign" style="color:orange;"></span>
+								</a>	
+							</div>
+							
+							<div class="col-md-6">
+								<a href="" class="" ng-click="deleteMessage(x.$id)">
+									<span class="glyphicon glyphicon-remove-sign " style="color:red;"></span>
+								</a>	
+							</div>
 						</div>
 						
 					</div>

@@ -12,7 +12,7 @@
 
 <div class="table-responsive col-xs-12 temp-table">
     <div class="col-md-9 temp-btn-group">
-        <a href="#/add-client">
+        <a href="#/add-user">
             <button type="button" class="btn btn-success" value="">
                 <span>add user </span>
                 <span class="glyphicon glyphicon-plus"></span>
@@ -73,14 +73,14 @@
 				</th>
 				<th>
 					<a href="" ng-click="sortType = 'active'; sortReverse = !sortReverse">
-						Active
+						Active Acct.s
 						<span ng-show="sortType == 'active' && !sortReverse"> </span>
 						<span ng-show="sortType == 'active'&& sortReverse"> </span>
 					</a>
 				</th>
 				<th>
 					<a href="" ng-click="sortType = 'accounts'; sortReverse = !sortReverse">
-						Accounts
+						Inactive Acct.s
 						<span ng-show="sortType == 'accounts' && !sortReverse"> </span>
 						<span ng-show="sortType == 'accounts'&& sortReverse"> </span>
 					</a>
@@ -108,9 +108,9 @@
 				<td style="vertical-align:middle">{{user.email}}</td>
 				<td style="vertical-align:middle">{{user.department}}</td>
 				<td style="vertical-align:middle">{{user.permissions}}</td>
-				<td style="vertical-align:middle"></td>
-				<td style="vertical-align:middle"></td>
-				<td style="vertical-align:middle"></td>
+				<td style="vertical-align:middle">{{user.accounts_active}}</td>
+				<td style="vertical-align:middle">{{user.accounts_inactive}}</td>
+				<td style="vertical-align:middle">{{user.accounts_inactive + user.accounts_active}}</td>
 			</tr>
 		</tbody>
 	</table>

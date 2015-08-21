@@ -23,10 +23,12 @@
 
 				$scope.userLogin = function(email, password) {
 					AuthService.login(email,password);
+					AuthService.userInfo();
 					$location.path('/');
 				};
 				$scope.logOut = function(){
 					AuthService.logOut();
+					
 					$location.path('/login');
 				}
 				

@@ -10,7 +10,39 @@
 				</div>
 				<div class="col-md-6 mock-form-row">
 				  <label for="exampleInputUserName1">Industry:</label>
-				  <input type="text" class="form-control" id="new8" placeholder="Industry" ng-model="newClient.industry" >
+				  
+				  <div class="dropdown col-md-offset-3">
+	  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+	  					Industry
+	  					<span class="caret"></span>
+	  				</button>
+	  				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+	  					<li>
+	  						<!-- <a href="">{{user.username}}</a> -->
+	  						<label for="">Hospitality</label>
+	  						<input type="radio" ng-model="newClient.industry" value="Hospitality">
+	  					</li>
+						<li>
+	  						<!-- <a href="">{{user.username}}</a> -->
+	  						<label for="">Automotive</label>
+	  						<input type="radio" ng-model="newClient.industry" value="Automotive">
+	  					</li><li>
+	  						<!-- <a href="">{{user.username}}</a> -->
+	  						<label for="">Manufaturing</label>
+	  						<input type="radio" ng-model="newClient.industry" value="Manufaturing">
+	  					</li><li>
+	  						<!-- <a href="">{{user.username}}</a> -->
+	  						<label for="">Transportation</label>
+	  						<input type="radio" ng-model="newClient.industry" value="Transportation">
+	  					</li><li>
+	  						<!-- <a href="">{{user.username}}</a> -->
+	  						<label for="">Medical</label>
+	  						<input type="radio" ng-model="newClient.industry" value="Medical">
+	  					</li>
+	  					
+	  				</ul>
+	  			</div>
+				  <!-- <input type="text" class="form-control" id="new8" placeholder="Industry" ng-model="newClient.industry" > -->
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -67,6 +99,19 @@
 							
 						</li>
 					</ul>
+					
+								<!-- <div class="dropdown col-md-offset-3">
+									<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										Dropdown
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+										<li ng-repeat="user in users | filter:{department: 'client services'}">
+											<label for="">{{user.username}}</label>
+											<input type="radio" ng-model="client.client_service_manager" value="{{user.username}}">
+										</li>
+									</ul>
+								</div> -->
 				
 			</div>
 		

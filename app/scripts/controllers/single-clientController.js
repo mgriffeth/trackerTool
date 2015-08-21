@@ -7,9 +7,12 @@
 
 				// var client = $firebaseObject(refClient);
 				$scope.client = ClientService.getSingleClient(routeParams);
-				console.log(ClientService.getSingleClient(routeParams));
+				var client = ClientService.getSingleClient(routeParams);
+				// console.log(ClientService.getSingleClient(routeParams));
 				
 				$scope.users = UserService.allUsers;
+				
+				var users = UserService.allUsers;
 				
 
 				$scope.readyEdit = function() {
@@ -29,6 +32,20 @@
 					ClientService.deleteClient(routeParams);
 					$location.path('/clients');
 					
+				}
+				
+				$scope.deactivateClient = function(){
+					var sales = _.findWhere(users,{username: client.sales_rep});
+					var csm = _.findWhere(users,{username: client.client_service_manager});
+					ClientService.deactivateClient(routeParams, sales.$id, csm.$id);
+					// $location.path('/clients');
+				}
+				
+				$scope.activateClient = function(){
+					var sales = _.findWhere(users,{username: client.sales_rep});
+					var csm = _.findWhere(users,{username: client.client_service_manager});
+					ClientService.activateClient(routeParams, sales.$id, csm.$id);
+					// $location.path('/clients');
 				}
 
 				$scope.updateClient = function(client) {

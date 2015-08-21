@@ -7,10 +7,11 @@
 				
 				$scope.users = UserService.allUsers;
 				users = UserService.allUsers;
-				console.log( users);
+				// console.log( users);
 				
 				var salesRep = AuthService.userInfo();
-
+				
+				$scope.currentUser = AuthService.userInfo();
 				$scope.sortType = 'company_name'; // set the default sort type
 				$scope.sortReverse = false; // set the default sort order
 				$scope.searchClients = ''; // set the default search/filter term
@@ -24,17 +25,21 @@
 					$('#partOne').removeClass('hidden');
 				};
 
-				$scope.addNewClient = function(client) {
+				$scope.addNewClient = function(client,userId,csmId) {
 					client.sales_rep = salesRep.username;
 					client.sales_key = salesRep.$id;
 					
-					ClientService.addClient(client)
 					var csm = _.findWhere(users,{username:client.client_service_manager});
-					console.log(csm.$id);
+					console.log(csm);
+					
+					ClientService.addClient(client, salesRep.$id, csm.$id)
+					
 					var messageObj ={
 						type:"client added",
 						subject:'Client added by '+ client.sales_rep,
-						body:'You have been assigned to ' + client.company_name + ' as their new Client Service Manager.'
+						body:'You have been assigned to ' + client.company_name + ' as their new Client Service Manager.',
+						status:'unread',
+						sales_rep_key: salesRep.$id
 					};
 					MessageService.notify(csm.$id,messageObj),
 					$location.path('/clients');

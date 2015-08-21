@@ -32,6 +32,8 @@
 					} else {
 						console.log(userData);
 						user.status = 'active';
+						user.accounts_inactive = 0;
+						user.accounts_active = 0;
 						userProfiles.child(userData.uid).set(user)
 					}
 				});
