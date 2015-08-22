@@ -1,8 +1,9 @@
 (function() {
 	angular.module('ClientTracker')
-		.controller('UserController', ['$scope','$location', 'UserService','AuthService',
-			function($scope,$location, UserService, AuthService) {
+		.controller('UserController', ['$scope','$location', 'UserService','AuthService','$firebaseAuth',
+			function($scope,$location, UserService, AuthService, $firebaseAuth) {
 				
+				var ref = new Firebase("https://luminous-torch-5681.firebaseio.com");
 				
 				$scope.users = UserService.allUsers;
 				
@@ -23,11 +24,11 @@
 
 				$scope.userLogin = function(email, password) {
 					AuthService.login(email,password);
-					AuthService.userInfo();
 					$location.path('/');
 				};
 				$scope.logOut = function(){
 					AuthService.logOut();
+					$scope.currentUser = null;
 					
 					$location.path('/login');
 				}

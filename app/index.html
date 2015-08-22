@@ -27,36 +27,16 @@
 </head>
 
 <body ng-app='ClientTracker'>
-  <nav class="navbar navbar-default" ng-controller="UserController" ng-show=" currentUser">
-    <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-        <li class="userNav"><a href="#/">Home</a></li>
-        <li class="userNav"><a href="#/clients">Clients</a></li>
-        <li class="userNav"><a href="#/users">Users</a></li>
-      </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <!-- <li class="" id="login"><a href="#/login">login</a></li> -->
-          <li class="userNav" id="logout"><a href="" ng-click="logOut()">logout <span class="glyphicon glyphicon-off"></span></a></li>
-          </li> 
-          <li ng-controller="UserController" class="userNav">
-              <a href="#/single-user/{{currentUser.id}}">
-                  logged in as: {{userInfo.username}} 
-              </a>
-          </li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-  </nav>
+  
 
 
-  <div id="viewContainer" class="col-md-12 parent">
+  <!-- <div id="viewContainer" class="col-md-12 parent"> -->
     <div class="parent" ng-view>
+        
+        <div class="container"> </div>
 
     </div>
-  </div>
+  <!-- </div> -->
 
 
 

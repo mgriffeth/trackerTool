@@ -1,11 +1,11 @@
 (function() {
 	'use strict';
 	angular.module('ClientTracker')
-		.service('AuthService', ['$firebaseArray', '$firebaseObject', '$location','$firebaseAuth', function($firebaseArray, $firebaseObject, $location,$firebaseAuth) {
+		.service('AuthService', ['$firebaseArray', '$firebaseObject', '$location', '$firebaseAuth',  function($firebaseArray, $firebaseObject, $location, $firebaseAuth) {
 			// var loggedInUser = getAuth();
 
 			var ref = new Firebase("https://luminous-torch-5681.firebaseio.com");
-
+			// var users = UserService.allUsers;
 
 			this.user = ref.getAuth();
 			if (this.user) {
@@ -23,32 +23,31 @@
 			}
 
 			this.login = function(email, password) {
-				// var auth = $firebaseAuth(ref);
-				// auth.$authWithPassword({
-				// 	email: email,
-				// 	password: password
-				// }).then(function(authData) {
-				// 	console.log('Authenticated successfully with payload:', authData);
-				// 	var sync = $firebase(FirebaseRef.child("users").child(authData.uid));
-				// 	var syncObject = sync.$asObject();
-				// 	syncObject.$bindTo($scope, "usr");
-				// }).catch(function(error) {
-				// 	console.error('Login Failed!', error);
-				// });
-				ref.authWithPassword({
-					email: email,
-					password: password
-				}, function(error, authData) {
-					if (error) {
-						console.log("Login Failed!", error);
-						alert(error);
-					} else {
-						console.log("Authenticated successfully with payload:", authData);
-					}
-				});
+				// var auth = $firebaseAuth(ref)
+				// auth.$onAuth(function(authData) {
+				// 		console.log(authData);
+				// 		var currentUser = _.findWhere(users, {
+				// 			email: authData.email
+				// 		})
+				// 	})
+					ref.authWithPassword({
+						email: email,
+						password: password
+					}, function(error, authData) {
+						if (error) {
+							console.log("Login Failed!", error);
+							alert(error);
+							
+						} else {
+							console.log("Authenticated successfully with payload:", authData);
+							$location.path('/');
+							// location.reload();
+						}
+					});
 			}
 			this.logOut = function() {
 					ref.unauth();
+					location.reload();
 				}
 				//end of service
 		}])

@@ -1,6 +1,4 @@
-<!-- <div ng-include="'nav-template.htm'"></div>
-<ng-include src="nav-template.html"></ng-include> -->
-
+<div ng-include src="'templates/nav-template.html'"></div>
 <div class="col-md-8 temp-table">
 	<div class="col-md-9 temp-btn-group">
         <a href="#/add-client">
@@ -86,7 +84,7 @@
 		</thead>
 		<tbody class="">
 
-			<tr ng-show="client.sales_rep == currentUser.username || client.client_service_manager == currentUser.userame" class="clickable-row" ng-repeat="client in clients | orderBy: sortType: sortReverse | filter:searchClients">
+			<tr ng-show="client.sales_rep == currentUser.username || client.client_service_manager == currentUser.username" class="clickable-row" ng-repeat="client in clients | orderBy: sortType: sortReverse | filter:searchClients">
 				<td style="vertical-align:middle">
 		          <a href="#/single-client/{{client.$id}}">
 		            <button ng-show="client.status !== 'deactivated'" class="btn btn-primary" type="button">
