@@ -4,7 +4,7 @@
 			function($scope,$location, UserService, AuthService, $firebaseAuth) {
 				
 				var ref = new Firebase("https://luminous-torch-5681.firebaseio.com");
-				
+				// location.reload();
 				$scope.users = UserService.allUsers;
 				
 				$scope.sortType = 'Last_name'; // set the default sort type
@@ -24,7 +24,9 @@
 
 				$scope.userLogin = function(email, password) {
 					AuthService.login(email,password);
+					
 					$location.path('/');
+					// location.reload();
 				};
 				$scope.logOut = function(){
 					AuthService.logOut();

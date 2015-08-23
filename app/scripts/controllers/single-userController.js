@@ -13,7 +13,7 @@
                 $scope.user = UserService.getSingleUser($routeParams.cid)
             
 			    $scope.currentUser = AuthService.user;
-				
+				$scope.userInfo = AuthService.userInfo();
 				
                 // $scope.userDisabled = $firebaseObject(inactiveUser);
 				// 

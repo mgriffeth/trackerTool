@@ -2,8 +2,8 @@
 
 <div class="col-md-8 col-md-offset-2  panel panel-default">
 	<div class="page-header clearfix">
-		<h1>Client Information
-			<small>for {{client.company_name}}</small>
+		<h1>
+			 {{client.company_name}}
 		</h1>
 		<div class=" pull-right">
 			<input id="editOpen" class=" btn btn-primary" type="button" name="name" value="edit" ng-click="readyEdit()">
@@ -11,8 +11,9 @@
 			<input class=" btn btn-warning" type="button" name="name" value="submit changes" ng-click="updateClient(client)">
 			<input ng-show="client.status !== 'deactivated'" class=" btn btn-danger" type="button" name="name" value="deactivate" ng-click="deactivateClient()">
 			<input ng-show="client.status == 'deactivated'" class=" btn btn-success" type="button" name="name" value="activate" ng-click="activateClient()">
+			<input ng-show="{{userInfor.permissions}}== 'admin'" class=" btn btn-danger" type="button" name="name" value="delete" ng-click="deleteClient()">
 		</div>
-		<input class=" btn btn-danger" type="button" name="name" value="delete" ng-click="deleteClient()">
+		
 	</div>
 	<div class="col-md-6 panel-body">
 		<div class="col-md-12">

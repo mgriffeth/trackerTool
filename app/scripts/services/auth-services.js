@@ -40,8 +40,8 @@
 							
 						} else {
 							console.log("Authenticated successfully with payload:", authData);
-							$location.path('/');
-							// location.reload();
+							// $location.path('/');
+							location.reload();
 						}
 					});
 			}

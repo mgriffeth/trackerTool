@@ -1,15 +1,16 @@
 // Custom Styles
 
 //styling variables
-$color1 :HSLA(0, 0%, 0%, 1);
+$background-color: HSLA(206, 100%, 15%, 1);
+$color1 :HSLA(0, 0%, 93%, 1);
 $color2 :HSLA(0, 0%, 97%, 1);
 
 
 
 body {
-  background-color: #002b49;
+  background-color: $background-color;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #333;
+  // color: #333;
 }
 .temp-table {
   background-color: $color1;
@@ -70,4 +71,8 @@ ul {
 }
 .form-temp{
     background-color:$color1;
+}
+tbody{
+    background-color: $color2;
+    
 }
