@@ -28,6 +28,9 @@
 				$scope.addNewClient = function(client,userId,csmId) {
 					client.sales_rep = salesRep.username;
 					client.sales_key = salesRep.$id;
+					var date = new Date().toString();
+					console.log(date);
+					client.contract_added_date = date;
 					
 					var csm = _.findWhere(users,{username:client.client_service_manager});
 					console.log(csm);

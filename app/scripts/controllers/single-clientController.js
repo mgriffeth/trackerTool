@@ -1,7 +1,7 @@
 (function() {
 	angular.module('ClientTracker')
-		.controller('SingleClientController', ['$scope', '$location', '$http', '$routeParams', '$cookieStore','ClientService','UserService',
-			function($scope, $location, $http, $routeParams, $cookieStore, ClientService,UserService) {
+		.controller('SingleClientController', ['$scope', '$location', '$http', '$routeParams', '$cookieStore','ClientService','UserService','AuthService',
+			function($scope, $location, $http, $routeParams, $cookieStore, ClientService,UserService, AuthService) {
 				var routeParams = $routeParams.cid;
 				// var refClient = new Firebase(fb.url + '/clients/' + routeParams);
 
@@ -13,6 +13,7 @@
 				$scope.users = UserService.allUsers;
 				
 				var users = UserService.allUsers;
+				$scope.user = AuthService.userInfo();
 				
 
 				$scope.readyEdit = function() {

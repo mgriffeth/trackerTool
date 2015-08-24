@@ -109,9 +109,9 @@
 				<td style="vertical-align:middle">{{user.email}}</td>
 				<td style="vertical-align:middle">{{user.department}}</td>
 				<td style="vertical-align:middle">{{user.permissions}}</td>
-				<td style="vertical-align:middle">{{user.accounts_active}}</td>
-				<td style="vertical-align:middle">{{user.accounts_inactive}}</td>
-				<td style="vertical-align:middle">{{user.accounts_inactive + user.accounts_active}}</td>
+				<td style="vertical-align:middle"><span class="badge">{{user.accounts_active}}</span></td>
+				<td style="vertical-align:middle"><span class="badge">{{user.accounts_inactive}}</span></td>
+				<td style="vertical-align:middle"><span class="badge">{{user.accounts_inactive + user.accounts_active}}</span></td>
 			</tr>
 		</tbody>
 	</table>

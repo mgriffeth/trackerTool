@@ -76,3 +76,22 @@ tbody{
     background-color: $color2;
     
 }
+.my-panel-heading{
+    background-color: $color1;
+    padding: 5px;
+    border-bottom: solid;
+    border-color: black ;
+    border-width: thin;
+}
+.my-panel-body{
+    padding:10px;
+    background-color: $color2;
+}
+.span-title{
+    font-size: 2rem;
+    
+}
+.panel-default{
+    background-color: $color1;
+    
+}

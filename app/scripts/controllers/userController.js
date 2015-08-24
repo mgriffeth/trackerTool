@@ -3,6 +3,7 @@
 		.controller('UserController', ['$scope','$location', 'UserService','AuthService','$firebaseAuth',
 			function($scope,$location, UserService, AuthService, $firebaseAuth) {
 				
+				
 				var ref = new Firebase("https://luminous-torch-5681.firebaseio.com");
 				// location.reload();
 				$scope.users = UserService.allUsers;
@@ -13,6 +14,7 @@
 				
 				
 				$scope.currentUser = AuthService.user;
+				var currentUser = AuthService.user;
 				// console.log(AuthService.user)
 				$scope.userInfo = AuthService.userInfo();
 				// console.log(AuthService.userInfo())

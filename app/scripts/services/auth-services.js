@@ -23,13 +23,7 @@
 			}
 
 			this.login = function(email, password) {
-				// var auth = $firebaseAuth(ref)
-				// auth.$onAuth(function(authData) {
-				// 		console.log(authData);
-				// 		var currentUser = _.findWhere(users, {
-				// 			email: authData.email
-				// 		})
-				// 	})
+				
 					ref.authWithPassword({
 						email: email,
 						password: password

@@ -1,20 +1,21 @@
 <div ng-include src="'templates/nav-template.html'"></div>
 
 <div class="col-md-8 col-md-offset-2  panel panel-default">
-	<div class="page-header clearfix">
-		<h1>
-			 {{client.company_name}}
-		</h1>
-		<div class=" pull-right">
+	<div class="clearfix my-panel-heading col-md-12 ">
+		<!-- <span class="span-title">
+			 client: {{client.company_name}}
+		</span> -->
+		<div class="pull-right">
 			<input id="editOpen" class=" btn btn-primary" type="button" name="name" value="edit" ng-click="readyEdit()">
 			<input id="editClose" class="hidden btn btn-primary" type="button" name="name" value="close edit" ng-click="closeEdit()">
 			<input class=" btn btn-warning" type="button" name="name" value="submit changes" ng-click="updateClient(client)">
 			<input ng-show="client.status !== 'deactivated'" class=" btn btn-danger" type="button" name="name" value="deactivate" ng-click="deactivateClient()">
 			<input ng-show="client.status == 'deactivated'" class=" btn btn-success" type="button" name="name" value="activate" ng-click="activateClient()">
-			<input ng-show="{{userInfor.permissions}}== 'admin'" class=" btn btn-danger" type="button" name="name" value="delete" ng-click="deleteClient()">
+			<input ng-show="user.permissions == 'admin'" class=" btn btn-danger" type="button" name="name" value="delete" ng-click="deleteClient()">
 		</div>
 		
 	</div>
+	
 	<div class="col-md-6 panel-body">
 		<div class="col-md-12">
 			<label for="">Company Name:</label>
@@ -57,7 +58,7 @@
 			  </ul>
 		  </div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<label for="">Contact Name:</label>
 			<span class="client-info-text">{{client.contact_name}}</span>
 			<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.contact_name">
@@ -81,6 +82,11 @@
 			<span class="client-info-text">{{client.contact_phone}}</span>
 			<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.contact_phone">
 
+		</div>
+		<div class="col-md-12">
+			<label for="">Notes:</label>
+			<span class="client-info-text">{{client.client_notes }}</span>
+			<input class="edit-client-input hidden" type="text" name="name" value="" ng-model="client.client_notes">
 		</div>
 	</div>
 
@@ -145,6 +151,8 @@
 
 
 		</div>
+		
+		
 	</div>
 
 	<!-- <div class="col-md-12 panel-body">
