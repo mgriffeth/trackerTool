@@ -67,40 +67,47 @@
 (function() {
 	'use strict';
 	angular.module('ClientTracker')
-		.service('AuthService', ['$firebaseArray', '$firebaseObject', '$location', function($firebaseArray, $firebaseObject, $location) {
+		.service('AuthService', ['$firebaseArray', '$firebaseObject', '$location', '$firebaseAuth',  function($firebaseArray, $firebaseObject, $location, $firebaseAuth) {
 			// var loggedInUser = getAuth();
 
 			var ref = new Firebase("https://luminous-torch-5681.firebaseio.com");
-			
+			// var users = UserService.allUsers;
 
 			this.user = ref.getAuth();
-			if(this.user){
-			var id = this.user.uid;	
+			if (this.user) {
+				var id = this.user.uid;
 			};
-			
+
+			var self = this;
 			// console.log(id);
-			
-			this.userInfo = function(){
+
+			this.userInfo = function() {
 				var userRef = new Firebase("https://luminous-torch-5681.firebaseio.com/users/" + id);
 				return $firebaseObject(userRef);
 				console.log($firebaseObject(userRef));
-				
+
 			}
 
 			this.login = function(email, password) {
-				ref.authWithPassword({
-					email: email,
-					password: password
-				}, function(error, authData) {
-					if (error) {
-						console.log("Login Failed!", error);
-					} else {
-						console.log("Authenticated successfully with payload:", authData);
-					}
-				});
+				
+					ref.authWithPassword({
+						email: email,
+						password: password
+					}, function(error, authData) {
+						if (error) {
+							console.log("Login Failed!", error);
+							alert(error);
+							
+						} else {
+							console.log("Authenticated successfully with payload:", authData);
+							// $location.path('/');
+							location.reload();
+						}
+					});
 			}
 			this.logOut = function() {
 					ref.unauth();
+					location.reload();
 				}
 				//end of service
 		}])
@@ -139,6 +146,8 @@
 					} else {
 						console.log(userData);
 						user.status = 'active';
+						user.accounts_inactive = 0;
+						user.accounts_active = 0;
 						userProfiles.child(userData.uid).set(user)
 					}
 				});
@@ -223,38 +232,87 @@
 }())
 (function() {
 	angular.module('ClientTracker')
-		.service('ClientService',['$firebaseArray','$firebaseObject' ,function($firebaseArray, $firebaseObject){
-			
+		.service('ClientService', ['$firebaseArray', '$firebaseObject', 'AuthService', function($firebaseArray, $firebaseObject, AuthService) {
+			var user = AuthService.userInfo();
 			var refClients = new Firebase("https://luminous-torch-5681.firebaseio.com/clients");
-			
-			this.getClients = function(){
+			var ref = new Firebase("https://luminous-torch-5681.firebaseio.com/");
+
+			this.getClients = function() {
 				return $firebaseArray(refClients);
 			};
-			this.getSingleClient = function (id){
+			this.getSingleClient = function(id) {
 				var refClient = new Firebase("https://luminous-torch-5681.firebaseio.com/clients/" + id);
 				return $firebaseObject(refClient);
 			};
-			this.addClient = function(client){
+			this.addClient = function(client, userId, csmId) {
 				refClients.push(client);
+				ref.child('users').child(userId).child('accounts_active').transaction(function(x) {
+					return x + 1;
+				});
+				ref.child('users').child(csmId).child('accounts_active').transaction(function(x) {
+					return x + 1;
+				});
 			};
-			this.saveClient = function(client){
+			
+			this.saveClient = function(client) {
 				client.$save();
 			};
-			this.deleteClient = function(id){
+			this.deleteClient = function(id) {
 				var refClient = new Firebase("https://luminous-torch-5681.firebaseio.com/clients/" + id);
 				var onComplete = function(error) {
 					if (error) {
 						console.log('Synchronization failed');
 					} else {
 						console.log('Synchronization succeeded');
-						
+
 					}
 				};
 				refClient.remove(onComplete);
 			};
 			
+			this.deactivateClient = function(id, userId, csmId){
+				var refClient = new Firebase("https://luminous-torch-5681.firebaseio.com/clients/" + id);
+				refClient.child('status').transaction(function(x){
+					return 'deactivated'
+				});
+				ref.child('users').child(userId).child('accounts_active').transaction(function(x) {
+					return x - 1;
+				});
+				ref.child('users').child(userId).child('accounts_inactive').transaction(function(x) {
+					return x + 1;
+				});
+				ref.child('users').child(csmId).child('accounts_active').transaction(function(x) {
+					return x - 1;
+				});
+				ref.child('users').child(csmId).child('accounts_inactive').transaction(function(x) {
+					return x + 1;
+				});
+				
+			};
 			
-	}])
+			this.activateClient = function(id, userId, csmId){
+				var refClient = new Firebase("https://luminous-torch-5681.firebaseio.com/clients/" + id);
+				refClient.child('status').transaction(function(x){
+					return 'active'
+				});
+				ref.child('users').child(userId).child('accounts_active').transaction(function(x) {
+					return x + 1;
+				});
+				ref.child('users').child(userId).child('accounts_inactive').transaction(function(x) {
+					return x - 1;
+				});
+				ref.child('users').child(csmId).child('accounts_active').transaction(function(x) {
+					return x + 1;
+				});
+				ref.child('users').child(csmId).child('accounts_inactive').transaction(function(x) {
+					return x - 1;
+				});
+				
+			};
+
+
+
+		}])
 }())
 (function() {
 	'use strict';
@@ -266,11 +324,33 @@
 			// var messagesRef = new Firebase("https://luminous-torch-5681.firebaseio.com/users/"+ currentUser.$id+'/messages');
 			// var currentUserMessages = $firebaseArray(messagesRef);
 			// console.log(currentUserMessages);
+			var userRef = new Firebase("https://luminous-torch-5681.firebaseio.com/users/");
+			
+			this.userMessages = function(userId){
+				var userMessageRef = new Firebase("https://luminous-torch-5681.firebaseio.com/users/" + userId +"/messages");
+				
+				return $firebaseArray(userMessageRef);
+				
+			};
 			
 			this.notify = function(id, messageObj){
-				console.log(id);
-				var userRef = new Firebase("https://luminous-torch-5681.firebaseio.com/users/");
-				userRef.child(id).child("messages").child("new").push(messageObj);
+				console.log(id);	
+				userRef.child(id).child("messages").push(messageObj);
+			};
+			
+			this.markAsRead = function(userid, messageId){
+				var messageRef = new Firebase("https://luminous-torch-5681.firebaseio.com/users/"+ userid + '/messages/'+ messageId);
+				
+				messageRef.child('status').set('read');
+				// messageRef.child("new").child(messageObj.$id).remove();
+				// messageRef.child("read").push(messageObj);
+				
+			};
+			
+			this.delete = function(userid, messageId){
+				var messageRef = new Firebase("https://luminous-torch-5681.firebaseio.com/users/"+ userid + '/messages/'+ messageId);
+				
+				messageRef.remove();
 			};
 			
 			
@@ -281,10 +361,12 @@
 }())
 (function() {
 	angular.module('ClientTracker')
-		.controller('UserController', ['$scope','$location', 'UserService','AuthService',
-			function($scope,$location, UserService, AuthService) {
+		.controller('UserController', ['$scope','$location', 'UserService','AuthService','$firebaseAuth',
+			function($scope,$location, UserService, AuthService, $firebaseAuth) {
 				
 				
+				var ref = new Firebase("https://luminous-torch-5681.firebaseio.com");
+				// location.reload();
 				$scope.users = UserService.allUsers;
 				
 				$scope.sortType = 'Last_name'; // set the default sort type
@@ -293,6 +375,7 @@
 				
 				
 				$scope.currentUser = AuthService.user;
+				var currentUser = AuthService.user;
 				// console.log(AuthService.user)
 				$scope.userInfo = AuthService.userInfo();
 				// console.log(AuthService.userInfo())
@@ -304,10 +387,14 @@
 
 				$scope.userLogin = function(email, password) {
 					AuthService.login(email,password);
+					
 					$location.path('/');
+					// location.reload();
 				};
 				$scope.logOut = function(){
 					AuthService.logOut();
+					$scope.currentUser = null;
+					
 					$location.path('/login');
 				}
 				
@@ -330,7 +417,7 @@
                 $scope.user = UserService.getSingleUser($routeParams.cid)
             
 			    $scope.currentUser = AuthService.user;
-				
+				$scope.userInfo = AuthService.userInfo();
 				
                 // $scope.userDisabled = $firebaseObject(inactiveUser);
 				// 
@@ -400,10 +487,11 @@
 				
 				$scope.users = UserService.allUsers;
 				users = UserService.allUsers;
-				console.log( users);
+				// console.log( users);
 				
 				var salesRep = AuthService.userInfo();
-
+				
+				$scope.currentUser = AuthService.userInfo();
 				$scope.sortType = 'company_name'; // set the default sort type
 				$scope.sortReverse = false; // set the default sort order
 				$scope.searchClients = ''; // set the default search/filter term
@@ -417,17 +505,24 @@
 					$('#partOne').removeClass('hidden');
 				};
 
-				$scope.addNewClient = function(client) {
+				$scope.addNewClient = function(client,userId,csmId) {
 					client.sales_rep = salesRep.username;
 					client.sales_key = salesRep.$id;
+					var date = new Date().toString();
+					console.log(date);
+					client.contract_added_date = date;
 					
-					ClientService.addClient(client)
 					var csm = _.findWhere(users,{username:client.client_service_manager});
-					console.log(csm.$id);
+					console.log(csm);
+					
+					ClientService.addClient(client, salesRep.$id, csm.$id)
+					
 					var messageObj ={
 						type:"client added",
 						subject:'Client added by '+ client.sales_rep,
-						body:'You have been assigned to ' + client.company_name + ' as their new Client Service Manager.'
+						body:'You have been assigned to ' + client.company_name + ' as their new Client Service Manager.',
+						status:'unread',
+						sales_rep_key: salesRep.$id
 					};
 					MessageService.notify(csm.$id,messageObj),
 					$location.path('/clients');
@@ -438,16 +533,20 @@
 }());
 (function() {
 	angular.module('ClientTracker')
-		.controller('SingleClientController', ['$scope', '$location', '$http', '$routeParams', '$cookieStore','ClientService','UserService',
-			function($scope, $location, $http, $routeParams, $cookieStore, ClientService,UserService) {
+		.controller('SingleClientController', ['$scope', '$location', '$http', '$routeParams', '$cookieStore','ClientService','UserService','AuthService',
+			function($scope, $location, $http, $routeParams, $cookieStore, ClientService,UserService, AuthService) {
 				var routeParams = $routeParams.cid;
 				// var refClient = new Firebase(fb.url + '/clients/' + routeParams);
 
 				// var client = $firebaseObject(refClient);
 				$scope.client = ClientService.getSingleClient(routeParams);
-				console.log(ClientService.getSingleClient(routeParams));
+				var client = ClientService.getSingleClient(routeParams);
+				// console.log(ClientService.getSingleClient(routeParams));
 				
 				$scope.users = UserService.allUsers;
+				
+				var users = UserService.allUsers;
+				$scope.user = AuthService.userInfo();
 				
 
 				$scope.readyEdit = function() {
@@ -467,6 +566,20 @@
 					ClientService.deleteClient(routeParams);
 					$location.path('/clients');
 					
+				}
+				
+				$scope.deactivateClient = function(){
+					var sales = _.findWhere(users,{username: client.sales_rep});
+					var csm = _.findWhere(users,{username: client.client_service_manager});
+					ClientService.deactivateClient(routeParams, sales.$id, csm.$id);
+					// $location.path('/clients');
+				}
+				
+				$scope.activateClient = function(){
+					var sales = _.findWhere(users,{username: client.sales_rep});
+					var csm = _.findWhere(users,{username: client.client_service_manager});
+					ClientService.activateClient(routeParams, sales.$id, csm.$id);
+					// $location.path('/clients');
 				}
 
 				$scope.updateClient = function(client) {
@@ -561,46 +674,37 @@
 	angular.module('ClientTracker')
 		.controller('HomeController', ['$scope', '$location', '$http', '$cookieStore', 'ClientService', 'UserService', 'AuthService','MessageService',
 			function($scope, $location, $http, $cookieStore, ClientService, UserService, AuthService, MessageService) {
-
-				$scope.clients = ClientService.getClients();
 				
 				$scope.users = UserService.allUsers;
 				users = UserService.allUsers;
-				// console.log( users);
 				
 				$scope.currentUser = AuthService.userInfo();
 				var currentUser = AuthService.userInfo();
+				console.log(currentUser)
 				
-				$scope.searchCurrentUser = currentUser.username;
-				// 
-				// $scope.sortType = 'company_name'; // set the default sort type
-				// $scope.sortReverse = false; // set the default sort order
-				// $scope.searchClients = ''; // set the default search/filter term
-				// 
-				// $scope.toPartTwo = function() {
-				// 	$('#partTwo').removeClass('hidden');
-				// 	$('#partOne').addClass('hidden');
-				// };
-				// $scope.toPartOne = function() {
-				// 	$('#partTwo').addClass('hidden');
-				// 	$('#partOne').removeClass('hidden');
-				// };
-				// 
-				// $scope.addNewClient = function(client) {
-				// 	client.sales_rep = salesRep.username;
-				// 	client.sales_key = salesRep.$id;
-				// 	
-				// 	ClientService.addClient(client)
-				// 	var csm = _.findWhere(users,{username:client.client_service_manager});
-				// 	console.log(csm.$id);
-				// 	var messageObj ={
-				// 		titel:'notification',
-				// 		body:'You have been assigned a new client'
-				// 	};
-				// 	MessageService.notify(csm.$id,messageObj),
-				// 	$location.path('/clients');
-				// };
-
+				$scope.clients = ClientService.getClients();
+				
+				$scope.messages = MessageService.userMessages(currentUser.$id);
+				var messages = MessageService.userMessages(currentUser.$id);
+				console.log(messages);
+				
+				$scope.sortType = 'company_name'; // set the default sort type
+				$scope.sortReverse = false; // set the default sort order
+				$scope.searchClients = ''; // set the default search/filter term
+			
+			
+			
+			$scope.markAsRead = function(messageId){
+				
+				MessageService.markAsRead(currentUser.$id, messageId);
+				
+			};
+			
+			$scope.deleteMessage= function(messageId){
+				MessageService.delete(currentUser.$id,messageId)
+				
+			};
+			
 			}
 		]);
 }());
