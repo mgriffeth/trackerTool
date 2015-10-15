@@ -8,9 +8,10 @@ $color2 :HSLA(0, 0%, 97%, 1);
 
 
 body {
-  background-color: $background-color;
+  // background-color: $background-color;
+  background-image: url("../images/1.jpg");
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  // color: #333;
+  
 }
 .temp-table {
   background-color: $color1;
@@ -20,6 +21,9 @@ body {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
   }
+}
+.msg-box{
+    padding-right: 0;
 }
 form {
   background-color: #f8f8f8;
