@@ -1,3 +1,3 @@
 ## Yo, I'm a Readme
 
-You should probably update me so people looking at your code have an idea what it is being used for :)
+Simply clone down to your local repo, and run both npm install and bower install to run.
