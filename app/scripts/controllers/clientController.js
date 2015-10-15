@@ -44,7 +44,7 @@
 						status:'unread',
 						sales_rep_key: salesRep.$id
 					};
-					MessageService.notify(csm.$id,messageObj),
+					// MessageService.notify(csm.$id,messageObj),
 					$location.path('/clients');
 				};
 
